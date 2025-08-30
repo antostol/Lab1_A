@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package lab1_a;
 /**
  *
  * @author Raluca
@@ -23,7 +23,7 @@ public class ZipCode {
     };
 
     public ZipCode(int zipCode) {
-        if (zipCode > 99999) {
+        if (zipCode > 99999 || zipCode < 0) {
             System.out.println("Error: The input zipcode is over 5 digits. Please try again.");
             this.zipCode = -1;
         } else {
@@ -47,8 +47,9 @@ public class ZipCode {
         for (int i = 0; i < barCode.length(); i++) {
             char digit = barCode.charAt(i);
             
-            if (digit != '0' || digit != '1') {
+            if (digit != '0' && digit != '1') {
                 System.out.println("Bar code character: " + digit + " must 1 or 0.");
+                this.zipCode = -1;
                 return;
             }
         }
@@ -62,7 +63,7 @@ public class ZipCode {
             return "Error: Invalid zipCode";
         }
         
-        String zip = String.format("%05", zipCode);
+        String zip = String.format("%05d", zipCode);
         StringBuilder sb = new StringBuilder("1");
         
         for (int i = 0; i < zip.length(); i++) { 
@@ -93,7 +94,7 @@ public class ZipCode {
                 case "10010": digit = 8; break;
                 case "10100": digit = 9; break;
                 default:
-                    System.out.println(group + " has invalid sequence in the bar code" + group);
+                    System.out.println(group + " has invalid sequence in the bar code");
                     return -1;
             }
             
@@ -102,6 +103,8 @@ public class ZipCode {
         
         return Integer.parseInt(z.toString());
     }
-    
-    
+
+    public int getZipCode() {
+        return zipCode;
+    }
 }
