@@ -21,6 +21,22 @@ public class ZipCode {
         "10010",
         "10100"
     };
+
+    public ZipCode(int zipCode) {
+        if (zipCode < 0 || zipCode > 99999) {
+            System.out.println("Error: The input zipcode is over 5 digits or negative. Please try again.");
+            this.zipCode = -1;
+        } else {
+            this.zipCode = zipCode;
+        }
+    }
+    
+    public ZipCode(String barCode) {
+    }
+    
+    public String getBarCode() {}
+    
+    private int parseBarCode() {}
     
     
 }
