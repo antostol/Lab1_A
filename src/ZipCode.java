@@ -59,7 +59,34 @@ public class ZipCode {
     
     public String getBarCode() {}
     
-    private int parseBarCode() {}
+    private int parseBarCode(String middle) {
+        StringBuilder z = new StringBuilder();
+        
+        for (int i = 0; i < 25; i += 5) {
+            String group = middle.substring(i, i + 5);
+            int digit;
+            
+            switch (group) {
+                case "11000": digit = 0; break;
+                case "00011": digit = 1; break;
+                case "00101": digit = 2; break;
+                case "00110": digit = 3; break;
+                case "01001": digit = 4; break;
+                case "01010": digit = 5; break;
+                case "01100": digit = 6; break;
+                case "10001": digit = 7; break;
+                case "10010": digit = 8; break;
+                case "10100": digit = 9; break;
+                default:
+                    System.out.println("Invalid group: " + group);
+                    return -1;
+            }
+            
+            z.append(digit);
+        }
+        
+        return Integer.parseInt(z.toString());
+    }
     
     
 }
